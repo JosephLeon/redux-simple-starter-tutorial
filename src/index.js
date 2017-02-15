@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDom from 'react-dom';
+import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
+// const API_KEY = 'PLACE_YOUR_API_KEY_HERE';
 
-const API_KEY = 'PLACE_YOUR_API_KEY_HERE';
+class App extends Component {
+	constructor (props) {
+		super(props);
 
-// Create a new component and this component should produce some html
-const App = () => {
-	return (
-		<div>
-			<SearchBar />
-		</div>
-	);
+		this.state = { videos: [] };
+
+		YTSearch({key: API_KEY, term: 'dragonball super'}, (videos) => {
+			console.log(videos);
+			this.setState({ videos });
+		});
+	}
+
+	render () {
+		return (	
+			<div>
+				<SearchBar />
+				<VideoList videos={this.state.videos} />
+			</div>
+		);
+	}
 }
 
-// Take this components HTML and put it on the page
 ReactDom.render(<App />, document.querySelector('.container'));
