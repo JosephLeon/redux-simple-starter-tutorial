@@ -6,7 +6,8 @@ import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 import file from './variables.js';
 
-// Create a variables file modeled after the sample-variables.js file.
+// Rename the sample-variables.js to variables.js and place any variables you do
+// not want pushed to the repo there.
 const API_KEY = file.api_key;
 
 class App extends Component {
@@ -18,7 +19,11 @@ class App extends Component {
 			selectedVideo: null
 		};
 
-		YTSearch({key: API_KEY, term: 'dragonball super'}, (videos) => {
+		this.videoSearch('Dragon Ball Super');
+	}
+
+	videoSearch(term) {
+		YTSearch({key: API_KEY, term: term}, (videos) => {
 			console.log(videos);
 			this.setState({ 
 				videos: videos,
@@ -30,7 +35,7 @@ class App extends Component {
 	render () {
 		return (	
 			<div>
-				<SearchBar />
+				<SearchBar onSearchTermChange={term => this.videoSearch(term)} />
 				<VideoDetail video={this.state.selectedVideo} />
 				<VideoList 
 					videos={this.state.videos} 
