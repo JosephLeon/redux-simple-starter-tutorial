@@ -5,8 +5,9 @@ import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 import file from './variables.js';
-// const API_KEY = 'PLACE_YOUR_API_KEY_HERE';
-const API_KEY = file.data;
+
+// Create a variables file modeled after the sample-variables.js file.
+const API_KEY = file.api_key;
 
 class App extends Component {
 	constructor (props) {
