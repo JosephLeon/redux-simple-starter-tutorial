@@ -9,8 +9,9 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<div className="col-md-8">
-				<input 
+			<div className="col-md-8 search-bar">
+				<h1>Youtube video search</h1>
+				Search: <input 
 					value={this.state.term} 
 					onChange={event => this.setState({ term: event.target.value })} />
 			</div>
